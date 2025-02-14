@@ -6,24 +6,29 @@ function setOperation(op) {
 
 function calculate() {
     var num1 = parseFloat(document.getElementById('num1').value);
+    var num2 = parseFloat(document.getElementById('num2').value);
     var resultBox = document.getElementById('result');
     var result;
 
-    if (isNaN(num1)) {
-        result = "Please enter a valid number.";
+    if (isNaN(num1) || isNaN(num2)) {
+        result = "Please enter valid numbers.";
     } else {
         switch (operation) {
             case 'add':
-                result = num1 + num1; // Example logic, can be replaced
+                result = num1 + num2;
                 break;
             case 'subtract':
-                result = num1 - num1; // Example logic, can be replaced
+                result = num1 - num2;
                 break;
             case 'multiply':
-                result = num1 * num1; // Example logic, can be replaced
+                result = num1 * num2;
                 break;
             case 'divide':
-                result = num1 !== 0 ? num1 / num1 : "Cannot divide by zero."; // Example logic, can be replaced
+                if (num2 === 0) {
+                    result = "Cannot divide by zero.";
+                } else {
+                    result = num1 / num2;
+                }
                 break;
             default:
                 result = "Please select an operation.";
@@ -32,4 +37,6 @@ function calculate() {
     }
 
     resultBox.value = result;
+    document.getElementById('num1').value = ''; // Clear the first input field
+    document.getElementById('num2').value = ''; // Clear the second input field
 }
